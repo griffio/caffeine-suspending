@@ -90,7 +90,7 @@ class SuspendingCacheTest {
     }
     
     @Test
-    fun `should caller cancel not cancel other waiting`() = runTest {
+    fun `should not cancel other callers when request is cancelled`() = runTest {
         suspend fun request(key: String): String {
             delay(1000)
             return "Result(${currentCoroutineContext()[CoroutineName]?.name})"
